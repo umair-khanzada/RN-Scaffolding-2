@@ -17,5 +17,5 @@ export const themesSchema = {
     },
 };
 
-export const lightVariant = 'light'; 
-export const darkVariant = 'dark'; 
+export const LIGHT_VARIANT = 'light'; 
+export const DARK_VARIANT = 'dark'; 

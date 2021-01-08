@@ -8,17 +8,17 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { ThemeContext, themesSchema, lightVariant, darkVariant } from './theme/ThemeProvider';
+import { ThemeContext, themesSchema, LIGHT_VARIANT, DARK_VARIANT } from './theme/ThemeProvider';
 
 
 
 function App() {
 
-  const [ themeVariant,  setThemeVariant ] = useState(lightVariant);
+  const [ themeVariant,  setThemeVariant ] = useState(LIGHT_VARIANT);
 
   // To just initialize the function on component mount!
   const toggleTheme = useCallback(() => {
-    setThemeVariant(variant => variant === lightVariant ? darkVariant : lightVariant);
+    setThemeVariant(variant => variant === LIGHT_VARIANT ? DARK_VARIANT : LIGHT_VARIANT);
   }, []);
 
   return (
