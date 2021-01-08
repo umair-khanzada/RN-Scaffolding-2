@@ -29,7 +29,7 @@ function App() {
           <View>
             <Text>React Native Scaffolding!</Text>
             <TouchableOpacity onPress={toggleTheme}>
-              Click Me To Change Theme!
+              <Text>Click Me To Change Theme!</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
