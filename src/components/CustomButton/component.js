@@ -1,19 +1,19 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 import PropTypes from 'prop-types';
+import { btnStyles } from './styles';
 
-const CustomButton = (props) => {
-  const { title, onClick, disabled, width, height, onLongClick, style } = props;
+function CustomButton(props) {
+  const { title, onClick, disabled, width, height, onLongClick, style, rounded, curvedButton, borderMeasure, bgColor, fgColor } = props;
   return (
     <Pressable
       disabled={disabled}
       onLongPress={onLongClick}
-      style={[
-        styles.buttonStyles,
-        width && { width: width },
-        height && { height: height },
-        style && { ...style },
-      ]}
+      style={{
+        ...btnStyles.basicStyles({height, width, bgColor: 'pink' , fgColor: 'red' }),
+        ...(rounded && btnStyles.rounded({width})),
+        ...(!rounded && curvedButton && btnStyles.curvedCorners({radiusMeasure: 10})) 
+      }}
       onPress={onClick}>
       <Text>{title}</Text>
     </Pressable>
@@ -39,12 +39,22 @@ CustomButton.prototype = {
   width: PropTypes.string,
   height: PropTypes.string,
   style: PropTypes.object,
+  rounded: PropTypes.bool,
+  curvedButton: PropTypes.bool,
+  bgColor: PropTypes.string,
+  fgColor: PropTypes.string,
+  borderMeasure: PropTypes.number || PropTypes.string,
 };
 CustomButton.defaultProps = {
   color: 'white',
-  onLongClick: () => {},
+  onLongClick: () => { },
   disabled: false,
   width: '100%',
   height: '100%',
   style: {},
+  rounded: false,
+  curvedButton: false,
+  bgColor: '#fff',
+  fgColor: '#fff',
+  borderMeasure: 0,
 };

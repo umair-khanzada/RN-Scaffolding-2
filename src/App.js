@@ -1,81 +1,51 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
+  TouchableOpacity,
 } from 'react-native';
-import CustomButton from './components/Custom-Button';
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import CustomButton from './components/CustomButton/component';
+
+import { ThemeContext, themesSchema, LIGHT_VARIANT, DARK_VARIANT } from './theme/ThemeProvider';
+
+
 
 function App() {
+
+  const [ themeVariant,  setThemeVariant ] = useState(LIGHT_VARIANT);
+
+  // To just initialize the function on component mount!
+  const toggleTheme = useCallback(() => {
+    setThemeVariant(variant => variant === LIGHT_VARIANT ? DARK_VARIANT : LIGHT_VARIANT);
+  }, []);
+
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <CustomButton
+      <ThemeContext.Provider value={themesSchema[themeVariant]}>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <View>
+            <Text>React Native Scaffolding!</Text>
+            <CustomButton
             title="Hello1212"
-            onClick={() => {
-              alert('hello');
-            }}
+            onClick={toggleTheme}
             disabled={false}
-            style={{ height: '25%', width: '50%' }}
+            height={50}
+            width={100}
+            rounded
           />
-          <Header />
-        </ScrollView>
-      </SafeAreaView>
+          </View>
+        </SafeAreaView>
+      </ThemeContext.Provider>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+
 });
 
 export default App;
