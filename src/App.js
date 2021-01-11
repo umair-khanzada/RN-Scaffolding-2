@@ -1,20 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   View,
   Text,
   StatusBar,
-  TouchableOpacity,
+  Pressable,
 } from 'react-native';
+
+import  Center  from './components/Center';
 
 import { ThemeContext, themesSchema, LIGHT_VARIANT, DARK_VARIANT } from './theme/ThemeProvider';
 
 
-
 function App() {
 
-  const [ themeVariant,  setThemeVariant ] = useState(LIGHT_VARIANT);
+  const [themeVariant, setThemeVariant] = useState(LIGHT_VARIANT);
 
   // To just initialize the function on component mount!
   const toggleTheme = useCallback(() => {
@@ -26,17 +27,20 @@ function App() {
       <ThemeContext.Provider value={themesSchema[themeVariant]}>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
-          <View>
-            <Text>React Native Scaffolding!</Text>
-            <TouchableOpacity onPress={toggleTheme}>
-              <Text>Click Me To Change Theme!</Text>
-            </TouchableOpacity>
-          </View>
+          <Center
+          height={'100%'}
+          width={'100%'}
+          direction={'column'}
+          variant={'light'}
+          >
+           <Text>Hello From Scaffolding App!</Text>
+          </Center>
         </SafeAreaView>
       </ThemeContext.Provider>
     </>
   );
 }
+
 
 const styles = StyleSheet.create({
 
