@@ -24,7 +24,14 @@ function App() {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <CustomButton />
+          <CustomButton
+            title="Hello1212"
+            onClick={() => {
+              alert('hello');
+            }}
+            disabled={false}
+            style={{ height: '25%', width: '50%' }}
+          />
           <Header />
         </ScrollView>
       </SafeAreaView>
