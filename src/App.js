@@ -7,10 +7,8 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
-
+import CustomButton from './components/Custom-Button';
 import { ThemeContext, themesSchema, LIGHT_VARIANT, DARK_VARIANT } from './theme/ThemeProvider';
-
-
 
 function App() {
 
@@ -30,6 +28,14 @@ function App() {
             <Text>React Native Scaffolding!</Text>
             <TouchableOpacity onPress={toggleTheme}>
               <Text>Click Me To Change Theme!</Text>
+              <CustomButton
+                title="Hello1212"
+                onClick={() => {
+                  alert('hello');
+                }}
+                disabled={false}
+                style={{ height: '25%', width: '50%' }}
+              />
             </TouchableOpacity>
           </View>
         </SafeAreaView>
